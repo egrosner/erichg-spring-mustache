@@ -26,6 +26,13 @@
             {{> header}}
         </header>
 
+        {{#isLogin}}
+        <main class="ui fluid">
+            {{> login}}
+        </main>
+        {{/isLogin}}
+
+        {{#isBlog}}
         <main class="ui fluid">
             <div class="ui grid">
                 <div class="four wide column">
@@ -40,6 +47,7 @@
                 </div>
             </div>
         </main>
+        {{/isBlog}}
 
         <!-- footer -->
         <footer>

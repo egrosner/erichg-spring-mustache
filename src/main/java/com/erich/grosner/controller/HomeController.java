@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
-    @RequestMapping(path = "/")
+    @RequestMapping("/")
     public String home(Model m) {
 
         BlogPost bp = new BlogPost();
@@ -38,6 +38,14 @@ public class HomeController {
         //m.addAllAttributes(posts);
 
         Map<String, Object> test = m.asMap();
+
+        m.addAttribute("isBlog", true);
+        return "index";
+    }
+
+    @RequestMapping("/login")
+    public String login(Model m) {
+        m.addAttribute("isLogin", true);
 
         return "index";
     }
