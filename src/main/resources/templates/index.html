@@ -34,7 +34,9 @@
 
                 <!-- blog posts -->
                 <div class="twelve wide column">
-                    {{> post}}
+                    {{#blogPosts}}
+                        {{> post}}
+                    {{/blogPosts}}
                 </div>
             </div>
         </main>
