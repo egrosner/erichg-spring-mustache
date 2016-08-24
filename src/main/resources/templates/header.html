@@ -1,12 +1,12 @@
 <div class="ui pointing menu">
-    <a class="active item" href="/">
+    <a class="{{#isBlog}}active{{/isBlog}} item" href="/">
         Home
     </a>
     <a class="item">
         About
     </a>
     <div class="right menu">
-        <a class="item" href="/login">
+        <a class="{{#isLogin}}active{{/isLogin}} item" href="/login">
             Login
         </a>
         <div class="item">
