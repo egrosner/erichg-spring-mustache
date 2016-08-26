@@ -5,6 +5,11 @@
     <a class="item">
         About
     </a>
+    {{#isLoggedIn}}
+    <a class="{{#isCreatePost}}active{{/isCreatePost}} item" href="/create">
+        Post
+    </a>
+    {{/isLoggedIn}}
     <div class="right menu">
         <a class="{{#isLogin}}active{{/isLogin}} item" href="/login">
             Login

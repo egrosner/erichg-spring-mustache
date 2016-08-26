@@ -49,6 +49,12 @@
         </main>
         {{/isBlog}}
 
+        {{#isCreatePost}}
+        <main class="ui fluid">
+            {{> createpost/createpost}}
+        </main>
+        {{/isCreatePost}}
+
         <!-- footer -->
         <footer>
             {{> footer}}

@@ -49,4 +49,10 @@ public class HomeController {
 
         return "index";
     }
+
+    @RequestMapping("/create")
+    public String create(Model m) {
+        m.addAttribute("isCreatePost", true);
+        return "index";
+    }
 }
