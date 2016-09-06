@@ -11,9 +11,16 @@
     </a>
     {{/isLoggedIn}}
     <div class="right menu">
-        <a class="{{#isLogin}}active{{/isLogin}} item" href="/login">
-            Login
-        </a>
+        {{^isLoggedIn}}
+            <a class="{{#isLogin}}active{{/isLogin}} item" href="/login">
+                Login
+            </a>
+        {{/isLoggedIn}}
+        {{#isLoggedIn}}
+            <a class="item" href="/logout">
+                Logout
+            </a>
+        {{/isLoggedIn}}
         <div class="item">
             <div class="ui transparent icon input">
                 <input type="text" placeholder="Search...">

@@ -4,6 +4,8 @@ package com.erich.grosner.controller;
 import com.erich.grosner.model.BlogPost;
 import com.erich.grosner.model.UserLogin;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -45,6 +47,15 @@ public class HomeController {
         Map<String, Object> test = m.asMap();
 
         m.addAttribute("isBlog", true);
+
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().equalsIgnoreCase("egrosner")) {
+            m.addAttribute("isLoggedIn", true);
+            m.addAttribute("loggedInUserName", SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        }
+        else {
+            m.addAttribute("isLoggedIn", false);
+        }
+
         return "index";
     }
 
