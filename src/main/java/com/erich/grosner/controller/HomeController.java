@@ -2,9 +2,14 @@ package com.erich.grosner.controller;
 
 
 import com.erich.grosner.model.BlogPost;
+import com.erich.grosner.model.UserLogin;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -43,12 +48,18 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model m) {
         m.addAttribute("isLogin", true);
 
         return "index";
     }
+
+    /*@RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String loginUser(UserLogin userLogin, Model m) {
+        System.out.println("hellooo");
+        return "index";
+    }*/
 
     @RequestMapping("/create")
     public String create(Model m) {
