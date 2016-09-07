@@ -4,20 +4,20 @@
     </head>
     <body>
         <div class="ui pointing menu" th:fragment="header">
-            <a class="active item" href="/">
+            <a class="item" th:classappend="${currentPage} == 'home' ? active" href="/">
                 Home
             </a>
-            <a class="item" th:href="@{/about}">
+            <a class="item" th:classappend="${currentPage} == 'about' ? active" th:href="@{/about}">
                 About
             </a>
-            <a class="item" th:href="@{/create}">
+            <a class="item" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${currentPage} == 'create' ? active" th:href="@{/create}">
                 Post
             </a>
             <div class="right menu">
-                <a class="item" th:href="@{/login}">
+                <a class="item" sec:authorize="hasRole('ROLE_ANONYMOUS')" th:classappend="${currentPage} == 'login' ? active" th:href="@{/login}">
                     Login
                 </a>
-                <a class="item" th:href="@{/logout}">
+                <a class="item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/logout}">
                     Logout
                 </a>
                 <div class="item">
