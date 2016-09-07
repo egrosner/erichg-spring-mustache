@@ -1,31 +1,32 @@
-<div class="ui pointing menu">
-    <a class="{{#isBlog}}active{{/isBlog}} item" href="/">
-        Home
-    </a>
-    <a class="item">
-        About
-    </a>
-    {{#isLoggedIn}}
-    <a class="{{#isCreatePost}}active{{/isCreatePost}} item" href="/create">
-        Post
-    </a>
-    {{/isLoggedIn}}
-    <div class="right menu">
-        {{^isLoggedIn}}
-            <a class="{{#isLogin}}active{{/isLogin}} item" href="/login">
-                Login
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div class="ui pointing menu" th:fragment="header">
+            <a class="active item" href="/">
+                Home
             </a>
-        {{/isLoggedIn}}
-        {{#isLoggedIn}}
-            <a class="item" href="/logout">
-                Logout
+            <a class="item">
+                About
             </a>
-        {{/isLoggedIn}}
-        <div class="item">
-            <div class="ui transparent icon input">
-                <input type="text" placeholder="Search...">
-                <i class="search link icon"></i>
+            <a class="item" href="/create">
+                Post
+            </a>
+            <div class="right menu">
+                <a class="item" href="/login">
+                    Login
+                </a>
+                <a class="item" href="/logout">
+                    Logout
+                </a>
+                <div class="item">
+                    <div class="ui transparent icon input">
+                        <input type="text" placeholder="Search..." />
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </body>
+</html>
