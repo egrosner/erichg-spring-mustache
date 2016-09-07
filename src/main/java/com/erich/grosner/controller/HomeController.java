@@ -46,16 +46,15 @@ public class HomeController {
 
         Map<String, Object> test = m.asMap();
 
+        m.addAttribute("currentPage", "home");
 
-
-        return "blog/post";
+        return "blog/index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model m) {
-        m.addAttribute("isLogin", true);
-
-        return "index";
+        m.addAttribute("currentPage", "login");
+        return "login/index";
     }
 
     /*@RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -66,7 +65,13 @@ public class HomeController {
 
     @RequestMapping("/create")
     public String create(Model m) {
-        m.addAttribute("isCreatePost", true);
-        return "index";
+        m.addAttribute("currentPage", "create");
+        return "createpost/index";
+    }
+
+    @RequestMapping("/about")
+    public String about(Model m) {
+        m.addAttribute("currentPage", "about");
+        return "about/index";
     }
 }
