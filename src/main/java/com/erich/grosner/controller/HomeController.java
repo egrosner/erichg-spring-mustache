@@ -46,17 +46,9 @@ public class HomeController {
 
         Map<String, Object> test = m.asMap();
 
-        m.addAttribute("isBlog", true);
 
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString().equalsIgnoreCase("egrosner")) {
-            m.addAttribute("isLoggedIn", true);
-            m.addAttribute("loggedInUserName", SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-        }
-        else {
-            m.addAttribute("isLoggedIn", false);
-        }
 
-        return "index";
+        return "blog/post";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
