@@ -1,4 +1,4 @@
-<html layout:decorator="index">
+<html layout:decorator="index" xmlns:th="http://www.w3.org/1999/xhtml">
     <head></head>
     <body>
         <main layout:fragment="content" class="ui fluid">
@@ -9,19 +9,17 @@
 
                 <!-- blog posts -->
                 <div class="twelve wide column">
-                    <div class="ui raised card fluid">
+
+
+                    <div class="ui raised card fluid" th:each="post : ${blogPosts}">
                         <div class="content">
-                            <div class="header">title</div>
+                            <div class="header" th:text="${post.title}"></div>
                             <div class="meta">
-                                <div class="right floated time">
-                                    date
-                                </div>
-                                <div class="category">
-                                    tags
-                                </div>
+                                <div class="right floated time" th:text="${post.postDate}" />
+                                <div class="category" th:text="${post.tags}" />
                             </div>
                             <div class="description">
-                                <p>body</p>
+                                <p th:text="${post.body}" />
                             </div>
                         </div>
                         <div class="extra content">
@@ -30,6 +28,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </main>

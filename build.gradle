@@ -1,18 +1,21 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.0.RELEASE'
+		springBootVersion = '1.4.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.liquibase:liquibase-gradle-plugin:1.2.1")
+		classpath('mysql:mysql-connector-java:5.1.40')
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'org.liquibase.gradle'
 
 jar {
 	baseName = 'web-spring-mustache'
@@ -27,15 +30,32 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
-	//compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtime('mysql:mysql-connector-java:5.1.40')
 	compile('org.projectlombok:lombok:1.16.10')
+	compile('org.hibernate:hibernate-core:5.2.4.Final')
+	compile('org.hibernate:hibernate-java8:5.2.4.Final')
+	compile('org.hibernate:hibernate-envers:5.2.4.Final')
+	compile('org.hibernate:hibernate-entitymanager:5.2.4.Final')
+	compile('org.liquibase.ext:liquibase-hibernate5:3.6')
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE')
 	//compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.0.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/db/changelog/db.changelog-master.xml'
+			url 'jdbc:mysql://192.168.99.100:3306/erichg'
+			username 'root'
+			password 'erich'
+		}
+	}
 }
 
 

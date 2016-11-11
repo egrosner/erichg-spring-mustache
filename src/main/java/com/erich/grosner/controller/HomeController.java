@@ -2,7 +2,10 @@ package com.erich.grosner.controller;
 
 
 import com.erich.grosner.model.BlogPost;
+import com.erich.grosner.model.BlogPostRepository;
 import com.erich.grosner.model.UserLogin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,28 +24,15 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
+    @Autowired
+    BlogPostRepository repo;
+
     @RequestMapping("/")
     public String home(Model m) {
 
-        BlogPost bp = new BlogPost();
-        bp.setBody("this is my new blog!");
-        bp.setTitle("New Blog!");
-        bp.setDate("August");
-        bp.setTags("General");
-
-        BlogPost newBP = new BlogPost();
-        newBP.setBody("Another post already??");
-        newBP.setTitle("omg!");
-        newBP.setDate("August 31st");
-        newBP.setTags("cool");
-
-        List<BlogPost> posts = new ArrayList<>();
-
-        posts.add(newBP);
-        posts.add(bp);
+        List<BlogPost> posts = repo.findAll(new PageRequest(0, 10)).getContent();
 
         m.addAttribute("blogPosts", posts);
-        //m.addAllAttributes(posts);
 
         Map<String, Object> test = m.asMap();
 

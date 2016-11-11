@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="egros (generated)" id="1478571747562-1">
+        <createTable tableName="blog_post">
+            <column name="id" type="BINARY(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="body" type="VARCHAR(255)"/>
+            <column name="post_date" type="BIGINT"/>
+            <column name="tags" type="VARCHAR(200)"/>
+            <column name="title" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="egros (generated)" id="1478571747562-2">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="blog_post"/>
+    </changeSet>
+</databaseChangeLog>
